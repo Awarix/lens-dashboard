@@ -1,0 +1,68 @@
+.searchContainerStyle {
+  padding: 40px 0px 30px;
+}
+
+.latestPostStyle {
+  margin: 23px 0px 5px;
+  word-wrap: break-word;
+}
+
+.profileContainerStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.profileImageStyle {
+  border-radius: 21px;
+  width: 42px;
+  height: 42px;
+}
+
+.placeholderStyle {
+  
+}
+
+.listItemContainerStyle {
+  display: flex;
+  flex-direction: column;
+}
+
+.listItemStyle {
+  background-color: white;
+  margin-top: 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  padding: 21px;
+}
+
+.profileInfoStyle {
+  margin-left: 10px;
+}
+
+.nameStyle {
+  margin: 0 0px 5px;
+}
+
+.handleStyle {
+  margin: 0px 0px 5px;
+  color: #b900c9;
+}
+
+.inputStyle {
+  outline: none;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid rgba(0, 0, 0, .04);
+  transition: all .4s;
+  width: 300px;
+  background-color: #fafafa;
+  
+}
+
+.inputStyle:focus {
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, .1);
+  }

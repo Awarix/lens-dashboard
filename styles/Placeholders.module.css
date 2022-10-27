@@ -1,0 +1,22 @@
+.grayLoadingStyle {
+  background-color: rgba(0, 0, 0, .1);
+  height: 115px;
+  width: 100%;
+  margin-top: 13px;
+  border-radius: 7px;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    from {
+        opacity: .2;
+      }
+    
+      50% {
+        opacity: 1;
+      }
+    
+      100% {
+        opacity: .2;
+      }
+}

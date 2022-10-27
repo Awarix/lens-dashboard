@@ -1,0 +1,45 @@
+.widget {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+    padding: var(--pd-def);
+    box-shadow: var(--bs);
+    border-radius: var(--br);
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: var(--fw-reg);
+    text-transform: uppercase;
+}
+
+.counter {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.link {
+    font-size: 12px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+.icon {
+    font-size: 18px;
+    padding: 5px;
+    background-color: rgba(128, 0, 128, 0.541);
+    align-self: flex-end;
+}

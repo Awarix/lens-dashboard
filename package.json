@@ -6,9 +6,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "ethers": "^5.7.2",
+    "graphql": "^16.6.0",
     "next": "latest",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-icons": "^4.6.0",
+    "recharts": "^2.1.15",
+    "urql": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "17.0.35",
