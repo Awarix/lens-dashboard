@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 const Lchart = (props) => {
   const newData = [
-    { date: '14.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
+    { date: '14.10', follow: props.follow, following: (props.following + Math.random()*100).toFixed(0) },
     { date: '15.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
     { date: '16.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
     { date: '17.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
@@ -40,8 +40,8 @@ const Lchart = (props) => {
           <YAxis />
           <Tooltip />
           <Legend className='xt-4'/>
-          <Line type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)' activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)'/>
+          <Line type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)'  />
+          <Line type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)' activeDot={{ r: 8 }}/>
         </LineChart>
       </ResponsiveContainer>
       </div>

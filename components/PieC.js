@@ -5,8 +5,8 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer,Legend } from 'rechart
 
 const PieC = (props) => {
   const data = [
-  { name: 'Follow', value: 325 }, 
-  { name: 'Following', value: 132 }
+  { name: 'Follow', value: props.follow }, 
+  { name: 'Following', value: props.following }
 ]
 const COLORS = ['#d24ffa', '#6caefd'];
 
@@ -31,8 +31,7 @@ const COLORS = ['#d24ffa', '#6caefd'];
             outerRadius,
             value,
             index
-          }) => {
-            console.log("handling label?");
+          }) => {         
             const RADIAN = Math.PI / 180;
             // eslint-disable-next-line
             const radius = 25 + innerRadius + (outerRadius - innerRadius);

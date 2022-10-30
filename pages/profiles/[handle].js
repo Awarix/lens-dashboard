@@ -10,6 +10,7 @@ import Achart from '../../components/Achart'
 import Bchart from '../../components/Bchart'
 import Rchart from '../../components/Rchart'
 import Image from 'next/image'
+import Rbchart from '../../components/Rbchart'
 
 const Handle = () => {
 
@@ -24,8 +25,11 @@ const Handle = () => {
           fetchProfile()
         }
       }, [handle])
+      
+      console.log(profile)
 
       async function fetchProfile() {
+        console.log({ profile })
         try {
           /* fetch the user profile using their handle */
           const returnedProfile = await client.query(getProfile, { handle }).toPromise();
@@ -55,9 +59,9 @@ const Handle = () => {
             {/* <title>{profile ? profile.handle : "Lensboard"}</title> */}
           </Head>
           <section className='flex flex-col w-full shadow'>
-            <img className='w-full h-60 border border-indigo-600 text-center' src={profile.coverPicture?.original?.url}></img>
+            <div className='w-full h-60 border border-purple-600 text-center mt-1'></div>
             <div className='flex flex-row mx-4 -my-16'>
-                <img className='bg-black rounded-full h-32 w-32' src={profile.picture?.original?.url}></img>
+                <img className='bg-purple-600 rounded-full h-32 w-32 border-8 border-purple-600' src={profile.picture?.original?.url}></img>
                 <div className='flex flex-col px-4 py-4'>
                     <span>views</span>
                     <h1>{profile.name}</h1>
@@ -75,11 +79,11 @@ const Handle = () => {
             <section className='mt-4 mb-8'>
               <div className='flex gap-10 flex-row justify-around shadow'>
                 <div className='flex-none justify-evenly w-96 h-80 flex-col gap-5'>
-                  <PieC />
-                  <PieC />
+                  <PieC follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
+                  <PieC follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
                 </div>
                 <div className='flex flex-grow'>
-                  <Lchart />
+                  <Lchart follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
                 </div>
               </div>
             </section>
@@ -87,11 +91,11 @@ const Handle = () => {
               <div className='flex gap-10 flex-row'>
                 
                 <div className='flex flex-grow'>
-                  <Achart />
+                  <Achart follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
                 </div>
                 <div className='flex-none justify-evenly w-96 h-80 flex-col gap-5'>
-                  <PieC />
-                  <PieC />
+                  <PieC follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
+                  <PieC follow={profile.stats.totalFollowers} following={profile.stats.totalFollowing}/>
                 </div>
               </div>
             </section>
