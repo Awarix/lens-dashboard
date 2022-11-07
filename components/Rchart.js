@@ -25,7 +25,7 @@ const Rchart = () => {
           <PolarAngleAxis dataKey="name" />
           <PolarRadiusAxis />
           <Tooltip />
-          <Radar name='value' dataKey="value" stroke="#d24ffa" fill='url(#color)' fillOpacity={0.6} />
+          <Radar name='value' dataKey="value" stroke="#d24ffa" fill='url(#color)' strokeWidth={2} fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
     </div>

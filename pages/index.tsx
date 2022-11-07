@@ -23,6 +23,7 @@ const Home: NextPage = () => {
       <SearchInput 
         placeholder='Start searching for a profile'
       />
+      <button>Search</button>
       <Link href={'/profiles/profile'}>
         <p>gogog</p>
       </Link>

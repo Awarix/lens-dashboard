@@ -8,7 +8,7 @@ export default function Navbar() {
           <div style={{display:'flex', justifyContent:'space-between', padding:'1rem 2rem'}} className="flex space-between">
             <Link href="/">
               <span className="text-lg text-emerald-600 font-medium">
-                🌱 Lensboard 
+                🌱 Lensomania 
               </span>
             </Link>
             <span> Search 

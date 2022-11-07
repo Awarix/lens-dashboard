@@ -40,8 +40,8 @@ const Lchart = (props) => {
           <YAxis />
           <Tooltip />
           <Legend className='xt-4'/>
-          <Line type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)'  />
-          <Line type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)' activeDot={{ r: 8 }}/>
+          <Line type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)' strokeWidth={2}  />
+          <Line type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)' strokeWidth={2} activeDot={{ r: 8 }}/>
         </LineChart>
       </ResponsiveContainer>
       </div>

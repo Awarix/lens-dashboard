@@ -92,7 +92,7 @@ export const recommendedProfiles = `
 `;
 
 export const searchProfiles = `
-query Search {
+query Search($query: Search!, $type: SearchRequestTypes!) {
   search(request: {
     query: "josh",
     type: PROFILE,
@@ -290,64 +290,34 @@ query Profile($handle: Handle!) {
 }
 `
 
-export const getPublications = `
-  query Publications ($id: ProfileId!) {
-    publications(request: {
-      profileId: $id,
-      publicationTypes: [POST, COMMENT, MIRROR],
-      limit: 10
-    }) {
-      items {
-        __typename
-        ... on Post {
-          ...PostFields
-        }
-        ... on Comment {
-          ...CommentFields
-        }
-        ... on Mirror {
-          ...MirrorFields
-        }
-      }
-      pageInfo {
-        prev
-        next
-        totalCount
-      }
-    }
-  }
-
-  fragment MediaFields on Media {
-    url
-    mimeType
-  }
-
-  fragment ProfileFields on Profile {
+export const getDefaultProfile = `
+query DefaultProfile($address: EthereumAddress!) {
+  defaultProfile(request: { ethereumAddress: $address}) {
     id
     name
     bio
+    isDefault
     attributes {
       displayType
       traitType
       key
       value
     }
-    isFollowedByMe
-    isFollowing(who: null)
     followNftAddress
     metadata
-    isDefault
     handle
     picture {
       ... on NftImage {
         contractAddress
         tokenId
         uri
+        chainId
         verified
       }
       ... on MediaSet {
         original {
-          ...MediaFields
+          url
+          mimeType
         }
       }
     }
@@ -356,17 +326,20 @@ export const getPublications = `
         contractAddress
         tokenId
         uri
+        chainId
         verified
       }
       ... on MediaSet {
         original {
-          ...MediaFields
+          url
+          mimeType
         }
       }
     }
     ownedBy
     dispatcher {
       address
+      canUseRelay
     }
     stats {
       totalFollowers
@@ -380,6 +353,7 @@ export const getPublications = `
     followModule {
       ... on FeeFollowModuleSettings {
         type
+        contractAddress
         amount {
           asset {
             name
@@ -392,20 +366,38 @@ export const getPublications = `
         recipient
       }
       ... on ProfileFollowModuleSettings {
-      type
+       type
       }
       ... on RevertFollowModuleSettings {
-      type
+       type
       }
     }
   }
+}
+`
 
-  fragment PublicationStatsFields on PublicationStats {
-    totalAmountOfMirrors
-    totalAmountOfCollects
-    totalAmountOfComments
+export const getPublications = `
+  query Publications($id: ProfileId!, $limit: LimitScalar) {
+    publications(request: {
+      profileId: $id,
+      publicationTypes: [POST],
+      limit: $limit
+    }) {
+      items {
+        __typename 
+        ... on Post {
+          ...PostFields
+        }
+      }
+    }
   }
-
+  fragment PostFields on Post {
+    id
+    metadata {
+      ...MetadataOutputFields
+    }
+    createdAt
+  }
   fragment MetadataOutputFields on MetadataOutput {
     name
     description
@@ -421,195 +413,8 @@ export const getPublications = `
       value
     }
   }
-
-  fragment Erc20Fields on Erc20 {
-    name
-    symbol
-    decimals
-    address
-  }
-
-  fragment CollectModuleFields on CollectModule {
-    __typename
-    ... on FreeCollectModuleSettings {
-        type
-        followerOnly
-        contractAddress
-    }
-    ... on FeeCollectModuleSettings {
-      type
-      amount {
-        asset {
-          ...Erc20Fields
-        }
-        value
-      }
-      recipient
-      referralFee
-    }
-    ... on LimitedFeeCollectModuleSettings {
-      type
-      collectLimit
-      amount {
-        asset {
-          ...Erc20Fields
-        }
-        value
-      }
-      recipient
-      referralFee
-    }
-    ... on LimitedTimedFeeCollectModuleSettings {
-      type
-      collectLimit
-      amount {
-        asset {
-          ...Erc20Fields
-        }
-        value
-      }
-      recipient
-      referralFee
-      endTimestamp
-    }
-    ... on RevertCollectModuleSettings {
-      type
-    }
-    ... on TimedFeeCollectModuleSettings {
-      type
-      amount {
-        asset {
-          ...Erc20Fields
-        }
-        value
-      }
-      recipient
-      referralFee
-      endTimestamp
-    }
-  }
-
-  fragment PostFields on Post {
-    id
-    profile {
-      ...ProfileFields
-    }
-    stats {
-      ...PublicationStatsFields
-    }
-    metadata {
-      ...MetadataOutputFields
-    }
-    createdAt
-    collectModule {
-      ...CollectModuleFields
-    }
-    referenceModule {
-      ... on FollowOnlyReferenceModuleSettings {
-        type
-      }
-    }
-    appId
-    hidden
-    reaction(request: null)
-    mirrors(by: null)
-    hasCollectedByMe
-  }
-
-  fragment MirrorBaseFields on Mirror {
-    id
-    profile {
-      ...ProfileFields
-    }
-    stats {
-      ...PublicationStatsFields
-    }
-    metadata {
-      ...MetadataOutputFields
-    }
-    createdAt
-    collectModule {
-      ...CollectModuleFields
-    }
-    referenceModule {
-      ... on FollowOnlyReferenceModuleSettings {
-        type
-      }
-    }
-    appId
-    hidden
-    reaction(request: null)
-    hasCollectedByMe
-  }
-
-  fragment MirrorFields on Mirror {
-    ...MirrorBaseFields
-    mirrorOf {
-    ... on Post {
-        ...PostFields         
-    }
-    ... on Comment {
-        ...CommentFields         
-    }
-    }
-  }
-
-  fragment CommentBaseFields on Comment {
-    id
-    profile {
-      ...ProfileFields
-    }
-    stats {
-      ...PublicationStatsFields
-    }
-    metadata {
-      ...MetadataOutputFields
-    }
-    createdAt
-    collectModule {
-      ...CollectModuleFields
-    }
-    referenceModule {
-      ... on FollowOnlyReferenceModuleSettings {
-        type
-      }
-    }
-    appId
-    hidden
-    reaction(request: null)
-    mirrors(by: null)
-    hasCollectedByMe
-  }
-
-  fragment CommentFields on Comment {
-    ...CommentBaseFields
-    mainPost {
-      ... on Post {
-        ...PostFields
-      }
-      ... on Mirror {
-        ...MirrorBaseFields
-        mirrorOf {
-          ... on Post {
-            ...PostFields         
-          }
-          ... on Comment {
-            ...CommentMirrorOfFields       
-          }
-        }
-      }
-    }
-  }
-
-  fragment CommentMirrorOfFields on Comment {
-    ...CommentBaseFields
-    mainPost {
-      ... on Post {
-        ...PostFields
-      }
-      ... on Mirror {
-        ...MirrorBaseFields
-      }
-    }
+  fragment MediaFields on Media {
+    url
+    mimeType
   }
 `

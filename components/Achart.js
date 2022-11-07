@@ -41,8 +41,8 @@ const Achart = (props) => {
           <YAxis />
           <Tooltip />
           <Legend className='xt-4'/>
-          <Area type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)' activeDot={{ r: 8 }} />
-          <Area type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)'/>
+          <Area type="monotone" dataKey="follow" stroke="#d24ffa" fill='url(#color1)' strokeWidth={2}  activeDot={{ r: 8 }} />
+          <Area type="monotone" dataKey="following" stroke="#6caefd" fill='url(#color2)' strokeWidth={2}/>
         </AreaChart>
       </ResponsiveContainer>
       </div>
