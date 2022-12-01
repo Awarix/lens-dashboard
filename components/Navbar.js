@@ -1,4 +1,9 @@
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import SearchInput from "./SearchInput";
+// import { useSearch } from "@memester-xyz/lens-use"
+
+// const { data } = useSearch("stani");
 
 export default function Navbar() {
   return (
@@ -11,9 +16,13 @@ export default function Navbar() {
                 🌱 Lensomania 
               </span>
             </Link>
-            <span> Search 
-              <span>  + icon </span>
-            </span>
+            <div>
+              <SearchInput 
+              placeholder='Start searching for a profile'
+              
+              />
+            </div>
+
             {/* wallet ? my profile : connect */}
               <button>Connect</button>
           </div>

@@ -13,7 +13,7 @@ const Achart = (props) => {
         { date: '20.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) }
       ]
   return (
-    <div style={{width:"100%", height:"600px"}} className='shadow rounded'>
+    <div style={{width:"100%", height:"600px"}} className='shadow rounded mt-4'>
     <ResponsiveContainer>
         <AreaChart
           data={newData}

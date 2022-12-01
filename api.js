@@ -418,3 +418,28 @@ export const getPublications = `
     mimeType
   }
 `
+
+const getGlobalStats = `
+query GlobalProtocolStats {
+  globalProtocolStats(request: {
+    fromTimestamp: UnixTimestamp,
+    toTimestamp: UnixTimestamp
+  }) {
+    totalProfiles
+    totalBurntProfiles
+    totalPosts
+    totalMirrors
+    totalComments
+    totalCollects
+    totalFollows
+    totalRevenue {
+      asset {
+        name
+        symbol
+        decimals
+        address
+      }
+      value
+    }
+  }
+}`
