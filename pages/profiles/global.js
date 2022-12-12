@@ -8,14 +8,20 @@ import PieC from '../../components/PieC'
 import Bchart from '../../components/Bchart'
 import Rchart from '../../components/Rchart'
 
-const getStats = async () => {
-  const response = await client.query(getGlobalStats, {fromTimestamp: 1667250000, toTimestamp: 1669842000 }).toPromise()
+
+
+const global = () => {
+  const fromTime = 1667250000
+  const toTime = 1669842000
+
+  async function getStats () {
+  const response = await client.query(getGlobalStats, {fromTimestamp: fromTime, toTimestamp: toTime }).toPromise()
   console.log('Lens example data: ', response)
 }
 
-getStats()
-
-const global = () => {
+(async () => {
+  await getStats();
+})();
   return (
       <Layout>
           <section className='flex flex-col w-full shadow'>

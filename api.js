@@ -259,11 +259,15 @@ query Profile($handle: Handle!) {
     stats {
       totalFollowers
       totalFollowing
+      totalPublications
       totalPosts
       totalComments
       totalMirrors
-      totalPublications
       totalCollects
+      commentsTotal(forSources: [Lenster])
+      postsTotal(forSources: [Lenster])
+      mirrorsTotal(forSources: [Lenster])
+      publicationsTotal(forSources: [Lenster])
     }
     followModule {
       ... on FeeFollowModuleSettings {
@@ -286,6 +290,7 @@ query Profile($handle: Handle!) {
         type
       }
     }
+    interests
   }
 }
 `
