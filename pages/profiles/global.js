@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import { client, getGlobalStats } from '../../api'
 import Layout from '../../components/Layout'
@@ -11,26 +11,30 @@ import Rchart from '../../components/Rchart'
 
 
 const global = () => {
-  const fromTime = 1667250000
-  const toTime = 1669842000
+  const fromTime = 1670871000
+  const toTime = 1670871012
+  const [global, setGlobal] = useState([])
 
   async function getStats () {
-  const response = await client.query(getGlobalStats, {fromTimestamp: fromTime, toTimestamp: toTime }).toPromise()
+  const response = await client.query(getGlobalStats, {fromTimestamp: fromTime, toTimestamp: toTime, sources: "Lenster" }).toPromise()
+  setGlobal(response.data.globalProtocolStats)
   console.log('Lens example data: ', response)
 }
+
 
 (async () => {
   await getStats();
 })();
+
   return (
       <Layout>
           <section className='flex flex-col w-full shadow'>
             <section className='mt-16'>
                 <div className='flex flex-row gap-5 px-4 py-4'>
-                    <Widget type="Total Posts" />
-                    <Widget type="Total Comments" />
-                    <Widget type="Total Mirrors" />
-                    <Widget type="Total Collects" />
+                    <Widget type="Total Posts" value={global.totalPosts}/>
+                    <Widget type="Total Comments" value={global.totalComments}/>
+                    <Widget type="Total Mirrors" value={global.totalMirrors}/>
+                    <Widget type="Total Collects" value={global.totalCollects}/>
   
                 </div>
             </section>
