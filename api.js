@@ -428,7 +428,7 @@ export const getGlobalStats = `
 query GlobalProtocolStats {
   globalProtocolStats(request: {
     fromTimestamp: 1667250000,
-    toTimestamp: 1669842000
+    toTimestamp: 1669842000,
     sources: [Lenster]
   }) {
     totalProfiles

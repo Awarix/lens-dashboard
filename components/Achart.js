@@ -4,7 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const Achart = (props) => {
 
     const newData = [
-        { date: '14.10', follow: props.follow, following: (props.following + Math.random()*100).toFixed(0) },
+        { date: '14.10', follow: props.follow || props.totalProfiles, following: (props.following + Math.random()*100).toFixed(0) },
         { date: '15.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
         { date: '16.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },
         { date: '17.10', follow: (123 + Math.random()*100).toFixed(0), following: (123 + Math.random()*100).toFixed(0) },

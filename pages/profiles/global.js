@@ -14,9 +14,11 @@ const global = () => {
   const fromTime = 1670871000
   const toTime = 1670871012
   const [global, setGlobal] = useState([])
+  const [oneMonth, setOneMonth] = useState(0)
+
 
   async function getStats () {
-  const response = await client.query(getGlobalStats, {fromTimestamp: fromTime, toTimestamp: toTime, sources: "Lenster" }).toPromise()
+  const response = await client.query(getGlobalStats, {fromTimestamp: oneMonth, toTimestamp: toTime, sources: "Lenster" }).toPromise()
   setGlobal(response.data.globalProtocolStats)
   console.log('Lens example data: ', response)
 }
@@ -24,7 +26,12 @@ const global = () => {
 
 (async () => {
   await getStats();
+  setOneMonth(toTime - 2629743)
+  console.log(oneMonth)
 })();
+
+// toTime shouldn't update, until we want to provide live charts. Should be fixed, until user refresh page.
+  
 
   return (
       <Layout>
@@ -41,7 +48,7 @@ const global = () => {
             <section className='mt-4 mb-8'>
               <div className='flex'>
                 <Achart 
-                totalFollowers='totalFollowers'
+                totalProfiles={global.totalProfiles}
                 />
               </div>
             </section>
@@ -52,8 +59,8 @@ const global = () => {
                   <Achart />
                 </div>
                 <div className='flex-none justify-evenly w-96 h-80 flex-col gap-5'>
-                  <PieC />
-                  <PieC />
+                  <PieC name="Total Posts" value={global.totalPosts}/>
+                  <PieC name="Total Comments" value={global.totalComments}/>
                 </div>
               </div>
             </section>
