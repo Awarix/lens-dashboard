@@ -11,8 +11,8 @@ import Rchart from '../../components/Rchart'
 
 
 const global = () => {
-  const fromTime = 1670871000
-  const toTime = 1670871012
+  const [fromTime, setFromTime] = useState (1670871000)
+  const [toTime, setToTime] = useState (1670871012)
   const [global, setGlobal] = useState([])
   const [oneMonth, setOneMonth] = useState(0)
 

@@ -19,7 +19,9 @@ export default function Navbar() {
             <div>
               <SearchInput 
               placeholder='Start searching for a profile'
-              
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              type="text"
               />
             </div>
 
