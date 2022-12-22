@@ -7,6 +7,7 @@ import Widget from '../../components/Widget'
 import PieC from '../../components/PieC'
 import Bchart from '../../components/Bchart'
 import Rchart from '../../components/Rchart'
+import SearchInput from '../../components/SearchInput'
 
 
 
@@ -36,6 +37,12 @@ const global = () => {
   return (
       <Layout>
           <section className='flex flex-col w-full shadow'>
+            <section className='m-16 flex flex-row justify-center gap-5'>
+              <p>Set period:</p>
+              <SearchInput className='w-32' placeholder='fromTime'/>
+              <SearchInput className='w-32' placeholder='toTime'/>
+              <button>Submit</button>
+            </section>
             <section className='mt-16'>
                 <div className='flex flex-row gap-5 px-4 py-4'>
                     <Widget type="Total Posts" value={global.totalPosts}/>

@@ -4,6 +4,7 @@ import styles from '../styles/SearchInput.module.css'
 export default function SearchInput({
     placeholder, onChange, value, onKeyDown = null
   }) {
+
     return (
       <input
         placeholder={placeholder}
