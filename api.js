@@ -425,10 +425,10 @@ export const getPublications = `
 `
 
 export const getGlobalStats = `
-query GlobalProtocolStats {
+query GlobalProtocolStats($fromTimestamp: UnixTimestamp!, $toTimestamp: UnixTimestamp!) {
   globalProtocolStats(request: {
-    fromTimestamp: 1667250000,
-    toTimestamp: 1669842000,
+   fromTimestamp: $fromTimestamp,
+   toTimestamp: $toTimestamp,
     sources: [Lenster]
   }) {
     totalProfiles

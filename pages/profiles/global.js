@@ -17,6 +17,16 @@ const global = () => {
   const [global, setGlobal] = useState([])
   const [oneMonth, setOneMonth] = useState(0)
 
+  const variables = {
+    fromTimestamp: 1667250000,
+    toTimestamp: 1669842000
+  };
+  
+  client.query({
+    query: getGlobalStats,
+    variables: variables
+  });
+
 
   async function getStats () {
   const response = await client.query(getGlobalStats, {fromTimestamp: oneMonth, toTimestamp: toTime, sources: "Lenster" }).toPromise()
@@ -61,7 +71,6 @@ const global = () => {
             </section>
             <section className='mt-4 mb-8'>
               <div className='flex gap-10 flex-row'>
-                
                 <div className='flex flex-grow'>
                   <Achart />
                 </div>
