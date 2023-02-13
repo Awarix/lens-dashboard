@@ -1,8 +1,9 @@
+# UPD: Moving everything to another repo.
+# Switching urql -> appolo 
+
 # Lensomania
 
-This is the main Lensomania GitHub page right now. 
-Sometimes I'm experimenting with new features in new repos, but I'm going to merge everything here.
-
+Will share new link after deploy.
 
 ## Lensomania Documentation
 
